@@ -428,8 +428,7 @@ report_deprecated_path_option(BossConfig)->
     lists:map(fun({App, Options})->
         case lists:keymember(path, 1, Options) of 
             true ->
-                io:format("ERROR: The path parameter defined for app ~p in boss.config is DEPRECATED. Please remove it~n'", [App]),
-                halt(1);
+                rebar_log:log(warning, "ERROR: The path parameter defined for app ~p in boss.config is DEPRECATED.", [App]);
             _ ->
                 ok
         end
