@@ -42,14 +42,15 @@
 root_dir() -> filename:absname(""). %filename:join([filename:dirname(code:which(?MODULE)), ".."]).
 root_src_dir() -> "src".
 root_priv_dir(App) -> 
-    case boss_env:is_developing_app(App) of
-       true ->
-            io:format("PRIV DIR : ~p ~p ~p~n", [code:priv_dir(App), root_dir(), App]),
-            filename:join([root_dir(), "priv"]);
-       false ->
-            io:format("PRIV DIR : ~p ~p~n", [code:priv_dir(App), App]),
-            code:priv_dir(App)
-   end.
+    filename:join([root_dir(), "priv"]).
+    %case boss_env:is_developing_app(App) of
+    %   true ->
+    %        io:format("PRIV DIR : ~p ~p ~p~n", [code:priv_dir(App), root_dir(), App]),
+    %        filename:join([root_dir(), "priv"]);
+    %   false ->
+    %        io:format("PRIV DIR : ~p ~p~n", [code:priv_dir(App), App]),
+    %        code:priv_dir(App)
+    %end.
 
 
 web_view_path() ->
